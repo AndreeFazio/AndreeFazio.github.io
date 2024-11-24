@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cerca Pokémon Leggendario</title>
+    <link rel="icon" href="https://e7.pngegg.com/pngimages/1001/304/png-clipart-pokemon-go-poke-ball-pokemon-go-trademark-logo-thumbnail.png" type="image/svg+xml">
+    <style>
+        body {
+            font-family: 'Verdana', sans-serif;
+            background-color: #f2f2f2;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #ef5350;
+            color: white;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ef5350;
+            border-radius: 5px;
+            margin: 10px;
+        }
+        input:focus {
+            outline: none;
+            border-color: #ffca28;
+            box-shadow: 0 0 5px #ffca28;
+        }
+        button {
+            background-color: #ef5350;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d32f2f;
+        }
+        #result a {
+            text-decoration: none;
+            color: #1976d2;
+            font-weight: bold;
+        }
+        #result a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Cerca il tuo Pokémon Leggendario</h1>
+        <p>Inserisci il nome e trova la sua pagina dedicata!</p>
+    </header>
+    <main>
+        <form id="pokemonForm" onsubmit="findPokemonPage(event)">
+            <input type="text" id="pokemonName" placeholder="Nome del Pokémon" required>
+            <button type="submit">Cerca</button>
+        </form>
+        <p id="result" style="margin-top: 20px;"></p>
+    </main>
+    <footer style="margin-top: 30px; color: #777;">
+        <p>&copy; 2024 Pokémon Fans. Non affiliato con Nintendo o Bulbapedia.</p>
+    </footer>
+    <script>
+        function findPokemonPage(event) {
+            event.preventDefault(); // Evita il ricaricamento della pagina
+            const pokemonName = document.getElementById("pokemonName").value.trim();
+            if (pokemonName) {
+                const formattedName = pokemonName.charAt(0).toUpperCase() + pokemonName.slice(1).toLowerCase();
+                const url = `https://bulbapedia.bulbagarden.net/wiki/${formattedName}_(Pokémon)`;
+                document.getElementById("result").innerHTML = `<a href="${url}" target="_blank">Vai alla pagina di ${formattedName}</a>`;
+            } else {
+                document.getElementById("result").textContent = "Per favore, inserisci un nome valido.";
+            }
+        }
+    </script>
+</body>
+</html>
+
